@@ -73,20 +73,19 @@ void gl_get_file_info(char* fname, char** out_src, u32* out_src_len) {
 	*out_src = malloc(*out_src_len + 1);
 	fread(*out_src, *out_src_len, 1, file);
 	fclose(file);
-	out_src[*out_src_len] = '\0';
 }
 
 u32 gl_compile_shader(const char* src, i32 src_len, GLenum type) {
 	u32 shader = glCreateShader(type);
-	const char* src_ptr = src;
-	glShaderSource(shader, 1, &src_ptr, &src_len);
+	//const char* src_ptr = src;
+	glShaderSource(shader, 1, &src, &src_len);
 	glCompileShader(shader);
 
 	i32 success;
-	char info[2048];
+	char info[256];
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if(success == false) {
-		glGetShaderInfoLog(shader, 2048, NULL, info);
+		glGetShaderInfoLog(shader, 256, NULL, info);
 		printf(info);
 		panic();
 	}
