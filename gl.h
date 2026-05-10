@@ -53,6 +53,7 @@ GlVertexObject gl_create_vertex_object(u32* vert_attrib_sizes, u32 vert_attrib_s
 GlTexture gl_create_texture(u32 width, u32 height, u8 channel_count, u8* pixels, i32 wrap_param, i32 min_filter_param, i32 max_filter_param, bool generate_mipmap);
 GlUbo gl_create_ubo(u64 size, u64 binding);
 GlSsbo gl_create_ssbo(u64 size, u64 binding);
+void gl_clear(v4 clear_color);
 
 #ifdef CSM_IMPLEMENTATION
 
